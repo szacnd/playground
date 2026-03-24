@@ -53,7 +53,7 @@ theorem t_eq_succ_succ_z : (2 : Nat) = Nat.succ (Nat.succ 0) := by
   calc
     (2 : Nat)
         = Nat.succ 1 := two_eq_succ_one
-    _  = Nat.succ (Nat.succ 0) := by
+    _   = Nat.succ (Nat.succ 0) := by
           rw [one_eq_succ_zero]
 
 -- Essa demonstração em especial requer uma certa explicação do porque escrevi desta forma
@@ -79,3 +79,45 @@ theorem add_comm (m n: Nat) : m + n = n + m := by
       rw [Nat.add_succ, Nat.succ_add, ih]
 
 #check add_comm
+
+-- Notas extras sobre syntaxe
+
+-- While both ordinary mathematical notation and the majority of programming languages use parentheses (e.g. f(x))
+-- to apply a function to its arguments, Lean simply writes the function next to its arguments (e.g. f x).
+-- Function application is one of the most common operations, so it pays to keep it concise. Rather than writing
+-- #eval String.append("Hello, ", "Lean!")
+-- to compute "Hello, Lean!", one would instead write
+-- #eval String.append "Hello, " "Lean!"
+-- Enquanto tanto a notação matemática usual quanto a maioria das linguagens de programação usam parênteses (ex.: f(x))
+-- para aplicar uma função aos seus argumentos, o Lean simplesmente escreve a função ao lado dos seus argumentos (ex.: f x).
+-- A aplicação de função é uma das operações mais comuns, então vale a pena mantê-la concisa. Em vez de escrever
+-- #eval String.append("Hello, ", "Lean!")
+-- para calcular "Hello, Lean!", escreve-se
+-- #eval String.append "Hello, " "Lean!"
+
+-- Lean's type system is unusually expressive. Types can encode strong
+-- specifications like “this sorting function returns a permutation of its input
+-- ” and flexible specifications like “this function has different return types,
+-- depending on the value of its argument”. The type system can even be used as
+-- a full-blown logic for proving mathematical theorems. This cutting-edge
+-- expressive power doesn't make simpler types unnecessary, however, and
+-- understanding these simpler types is a prerequisite for using the more
+-- advanced features.
+-- O sistema de tipos do Lean é incomumente expressivo. Tipos podem codificar
+-- especificações fortes como “esta função de ordenação retorna uma permutação
+-- de sua entrada” e especificações flexíveis como “esta função tem diferentes
+-- tipos de retorno, dependendo do valor do seu argumento”. O sistema de tipos
+-- pode até ser usado como uma lógica completa para provar teoremas matemáticos.
+-- Esse poder expressivo de ponta não torna os tipos mais simples desnecessários,
+-- no entanto, e entender esses tipos mais simples é um pré-requisito para usar
+-- os recursos mais avançados.
+
+-- Important syntax notation:
+-- In Lean, new names are defined using the colon-equal operator := rather than =.
+-- This is because = is used to describe equalities between existing expressions,
+-- and using two different operators helps prevent confusion. Does this apply
+-- to the LEAN4 prover.
+-- Em Lean, novos nomes são definidos usando o operador dois-pontos igual := em vez de =.
+-- Isso ocorre porque = é usado para descrever igualdades entre expressões existentes,
+-- e usar dois operadores diferentes ajuda a evitar confusão. Isso se aplica
+-- ao provador LEAN4?
