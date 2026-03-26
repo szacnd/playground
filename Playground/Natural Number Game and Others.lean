@@ -24,7 +24,7 @@ theorem ty_eq_txps (x y: Nat) (h : y = x + 7) : 2*y = 2*(x + 7) := by
 
 #check ty_eq_txps
 
--- This is along one, prove that 2 + 2 = 4, ussing successor.
+-- (1) This is along one, prove that 2 + 2 = 4, ussing successor.
 -- Essa é uma longa, prove que 2 + 2 = 4, usando sucessores.
 
 theorem one_eq_succ_zero : (1 : Nat) = Nat.succ 0 :=
@@ -67,25 +67,42 @@ theorem t_eq_succ_succ_z : (2 : Nat) = Nat.succ (Nat.succ 0) := by
 
 #check t_eq_succ_succ_z
 
--- Bellow here, is some examples that I tried on reunions and
--- by myself
--- Abaixo daqui, estão alguns exemplos que testamos em reuniões e
--- por mim mesmo.
-theorem add_comm (m n: Nat) : m + n = n + m := by
-  induction n with
-    | zero =>
-      rw [Nat.add_zero, Nat.zero_add]
-    | succ n ih =>
-      rw [Nat.add_succ, Nat.succ_add, ih]
+-- Proof that a + (b + 0) + (c + 0) = a + b + c
+-- Prova que a + (b + 0) + (c + 0) = a + b + c
+theorem a_p_b_p_c (a b c : Nat) : a + (b + 0) + (c + 0) = a + b + c := by
+  rw [Nat.add_zero]
+  rw [Nat.add_zero]
 
-#check add_comm
+#check a_p_b_p_c
 
-theorem try_false (h : 2 = 3) : 1 = 42 := by
-  cases h
+-- Proof that a + (b + 0) + (c + 0) = a + b + c
+-- Explicitamente dizendo onde a tatica rw (rewrite) must be done
+-- Prova que a + (b + 0) + (c + 0) = a + b + c
+-- Explicitamente dizendo onde a tatica rw (reescrever) deve ser realizada
+theorem a_p_b_p_c_two (a b c : Nat) : a + (b + 0) + (c + 0) = a + b + c := by
+  rw [Nat.add_zero c]
+  rw [Nat.add_zero b]
 
-#check try_false
--- Apparently it's possible to prove anything by contradition
--- in LEAN.
+theorem succ_eq_add_one (n :Nat) : Nat.succ n = n + 1 := by
+  rw [one_eq_succ_zero]
+  -- Need more notes
+  -- Precisa de mais anotações
+  -- rw [one_eq_succ_zero]
+  -- rw [add_succ]
+  -- rw [add_zero]
+  -- rfl
+
+#check succ_eq_add_one
+
+-- Finally going back to (1). Need some importation
+-- Finalmente voltamos para o problema 1
+-- theorem two_pl_two_eq_four : (2 : Nat) + 2 = 4 := by
+--  rw [four_eq_succ_three]
+--  rw [three_eq_succ_two]
+--  nth_rewrite 2 [two_eq_succ_one]
+--  rw [add_succ]
+--  rw [← succ_eq_add_one]
+--  rfl
 
 -- Notas extras sobre syntaxe
 
