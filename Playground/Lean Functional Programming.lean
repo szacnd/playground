@@ -33,13 +33,18 @@ def maximum (n: Nat) (k: Nat) : Nat :=
 
 -- Example
 #eval maximum (5+8) (2 * 7)
--- maximum (5 + 8) (2 * 7) => 
--- maximum 13 14 => 
+-- maximum (5 + 8) (2 * 7) =>
+-- maximum 13 14 =>
 -- if 13 < 14 then 14 else 13 =>
 -- 14 (returned value)
 
 def spaceBetween (before : String) (after : String) : String :=
   String.append before (String.append " " after)
+
+def joinStringWith (first : String) (second : String) (third : String) : String :=
+  String.append second (String.append first third)
+
+#eval joinStringWith ", " "one" "and another"
 
 -- As functional programming is basicaly a type of lambda calculus
 -- There's no "two arguments functions" everything is threated as
